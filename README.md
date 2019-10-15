@@ -20,11 +20,13 @@ The application just needs to have a main.py for flask to point to before it can
 Navigate to the project directory in a terminal window and on Linux/OSX run:
 
 ```bash
+export FLASK_ENV=development
 export FLASK_APP=main.py
 ```
 On Windows command prompt run:
 
 ```cmd
+set FLASK_ENV=development
 set FLASK_APP=main.py
 ```
 
