@@ -39,5 +39,7 @@ You can navigate to 127.0.0.1:/5000 or localhost:5000/ in a web browser to see t
 
 If you wish to use PyCharm community edition to work with the application, you can follow the setup steps [here](https://blog.miguelgrinberg.com/post/setting-up-a-flask-application-in-pycharm)
 
+For creating python modules to use, [this Stackoverflow answer is helpful](https://stackoverflow.com/questions/15746675/how-to-write-a-python-module-package)
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
