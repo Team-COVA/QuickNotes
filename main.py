@@ -1,8 +1,7 @@
 from flask import (Flask,
-render_template)
+render_template, request)
 
 import datetime
-
 
 def create_app():
     # create and configure the app
@@ -20,11 +19,28 @@ def create_app():
         message = "The current time on the server is: "
 
         #gets current time and formats it nicely
-        currentTime = datetime.datetime.now().strftime("%b %d %Y %H:%M:%S")
+        currentTime = datetime.datetime.now().strftime("%b %d %Y")
         message += str(currentTime) + "\n"
 
         #send the message as a response
         return message
+    @app.route('/submitNote', methods=['POST'])
+    def notePrint():
+
+        titleText = request.form["quicknote_title"]
+        contentText = request.form["qncontents"]
+        qnTitle = "Title: " + titleText
+        qnContent = "Content: " + contentText
+
+        # saves the date the note was created
+        createDate = datetime.datetime.now().strftime("%b %d %Y")
+        dateMessage = "QuickNote Created On: " + str(createDate)
+        return (qnTitle + '\n' + qnContent+ dateMessage)
+
+
+
+
+
 
 
     return app

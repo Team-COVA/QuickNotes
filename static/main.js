@@ -23,7 +23,7 @@ function requestCallback(responseText)
 	take the response text, and set it to the "serverTime"
 	element on the page so the user can see it
 	*/
-	let serverTimePElement = document.getElementById("serverTime");
+	let serverTimePElement = document.getElementById("servertime");
 	serverTimePElement.innerHTML = responseText;
 }
 
