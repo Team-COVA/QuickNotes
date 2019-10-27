@@ -7,11 +7,23 @@
   <title>Welcome To Quick Notes</title>
 </head>
 <body>
-  <h1>Welcome</h1>
-  <div>
-    <p>You'll be able to store notes here.</p>
-  </div>
-  <p id="serverTime">
+  <h1>QuickNotes</h1>
+  <form action="/submitNote" method="post">
+      <fieldset>
+      <div>
+          <label for="title">Title:</label><br>
+          <input type="text" id="title" name="quicknote_title">
+
+      </div>
+      <div>
+        <label for="contents">Contents:</label><br>
+        <textarea rows="15" cols="90" name="qncontents"
+                            id="contents"></textarea>
+      </div>
+      <input type="submit" value="Save"> <input type="Reset" value="Delete">
+       </fieldset>
+  </form>
+  <p id="servertime">
 
   </p>
 
