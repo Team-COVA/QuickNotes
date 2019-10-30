@@ -27,16 +27,16 @@ def create_app():
     @app.route('/submitNote', methods=['POST'])
     def notePrint():
 
-        #titleText = request.form["quicknote_title"]
-        #contentText = request.form["qncontents"]
-        qnTitle = "Title: " + titleText
-        qnContent = "Content: " + contentText
+        titleText = request.form["quicknote_title"]
+        contentText = request.form["qncontents"]
+        #qnTitle = "Title: " + titleText
+        #qnContent = "Content: " + contentText
 
         # saves the date the note was created
         #createDate = datetime.datetime.now().strftime("%b %d %Y")
         #dateMessage = "QuickNote Created On: " + str(createDate)
-        with open('/submitNotes', 'w') as qnContent:
-            f.write('qnTitle\n')
+        with open('/submitNotes', 'w') as titleText:
+            f.write('contentText\n')
 
 
         #Unsure if this would work. Directory is referenced, but seems redundant.
