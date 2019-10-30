@@ -29,22 +29,22 @@ def create_app():
 
         titleText = request.form["quicknote_title"]
         contentText = request.form["qncontents"]
-        #qnTitle = "Title: " + titleText
-        #qnContent = "Content: " + contentText
+        qnTitle = "Title: " + titleText
+        qnContent = "Content: " + contentText
 
         # saves the date the note was created
-        #createDate = datetime.datetime.now().strftime("%b %d %Y")
-        #dateMessage = "QuickNote Created On: " + str(createDate)
-        with open('/submitNotes', 'w') as titleText:
-            f.write('contentText\n')
+        createDate = datetime.datetime.now().strftime("%b %d %Y")
+        dateMessage = "QuickNote Created On: " + str(createDate)
+        # with open('/submitNote', 'w') as :
+        # f.write('contentText\n')
+        # Open, Write, Save
 
-
-        #Unsure if this would work. Directory is referenced, but seems redundant.
-        #outFileName = "\QuickNotes\\submitNotes"
-        #outFile = open(outFileName, "w")
-        #outFile.write(qnTitle + qnContent)
-        #outFile.close()
-        #return (qnTitle + '\n' + qnContent+ dateMessage)
+        # Unsure if this would work. Directory is referenced, but seems redundant.
+        # outFileName = "\QuickNotes\\submitNotes"
+        # outFile = open(outFileName, "w")
+        # outFile.write(qnTitle + qnContent)
+        # outFile.close()
+        return (qnTitle + '\n' + qnContent+ dateMessage)
 
 
 
