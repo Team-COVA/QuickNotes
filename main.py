@@ -35,10 +35,15 @@ def create_app():
         # saves the date the note was created
         #createDate = datetime.datetime.now().strftime("%b %d %Y")
         #dateMessage = "QuickNote Created On: " + str(createDate)
-        outFileName = "\QuickNotes\\submitNotes"
-        outFile = open(outFileName, "w")
-        outFile.write(qnTitle + qnContent)
-        outFile.close()
+        with open('/submitNotes', 'w') as qnContent:
+            f.write('qnTitle\n')
+
+
+        #Unsure if this would work. Directory is referenced, but seems redundant.
+        #outFileName = "\QuickNotes\\submitNotes"
+        #outFile = open(outFileName, "w")
+        #outFile.write(qnTitle + qnContent)
+        #outFile.close()
         #return (qnTitle + '\n' + qnContent+ dateMessage)
 
 
