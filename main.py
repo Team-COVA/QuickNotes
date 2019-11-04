@@ -35,21 +35,23 @@ def create_app():
         # saves the date the note was created
         createDate = datetime.datetime.now().strftime("%b %d %Y")
         dateMessage = "QuickNote Created On: " + str(createDate)
-        # with open('/submitNote', 'w') as :
-        # f.write('contentText\n')
         # Open, Write, Save
 
+        import os.path
+
+        save_path = ".\submitNote"
+        name_of_file = titleText
+        completeName = os.path.join(save_pathi, name_of_file + ".txt")
+        file1 = open(completeName, "w")
+        toFile = contentText # "Write what you want into the field"
+        file1.write(toFile)
+        file1.close()
+
         # Unsure if this would work. Directory is referenced, but seems redundant.
-        # outFileName = "\QuickNotes\\submitNotes"
-        # outFile = open(outFileName, "w")
-        # outFile.write(qnTitle + qnContent)
-        # outFile.close()
         return (qnTitle + '\n' + qnContent+ dateMessage)
 
-
-
-
-
-
-
+    # Very old iteration of saveFile. Disregard.
+    # def save('/submitNote', 'w'):
+    #    with open('/submitNote', 'w') as f:
+    #        f.write('contentText\n')
     return app
