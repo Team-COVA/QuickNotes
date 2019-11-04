@@ -2,6 +2,7 @@ from flask import (Flask,
 render_template, request)
 
 import datetime
+import os.path
 
 def create_app():
     # create and configure the app
@@ -41,7 +42,7 @@ def create_app():
 
         save_path = ".\submitNote"
         name_of_file = titleText
-        completeName = os.path.join(save_pathi, name_of_file + ".txt")
+        completeName = os.path.join(save_path, name_of_file + ".txt")
         file1 = open(completeName, "w")
         toFile = contentText # "Write what you want into the field"
         file1.write(toFile)
