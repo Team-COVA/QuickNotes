@@ -38,8 +38,6 @@ def create_app():
         dateMessage = "QuickNote Created On: " + str(createDate)
         # Open, Write, Save
 
-        import os.path
-
         save_path = ".\submitNote"
         name_of_file = titleText
         completeName = os.path.join(save_path, name_of_file + ".txt")
