@@ -4,14 +4,27 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="../static/main.css">
+
   <title>Welcome To Quick Notes</title>
 </head>
 <body>
-  <h1>Welcome</h1>
-  <div>
-    <p>You'll be able to store notes here.</p>
-  </div>
-  <p id="serverTime">
+  <h1>QuickNotes</h1>
+      <fieldset>
+      <div>
+          <label for="title">Title:</label><br>
+          <input type="text" id="title" name="qntitle">
+
+      </div>
+      <div>
+        <label for="contents">Contents:</label><br>
+        <textarea rows="15" cols="90" name="qncontents"
+                            id="contents"></textarea>
+      </div>
+      <button id="submit">Save</button> <button id="clear">Delete</button>
+
+       </fieldset>
+
+  <p id="servertime">
 
   </p>
 
