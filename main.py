@@ -1,6 +1,9 @@
 from flask import (Flask,
-render_template, jsonify)
+render_template, request)
+
 import datetime
+import os.path
+
 
 def create_app():
     # create and configure the app
@@ -26,9 +29,33 @@ def create_app():
         #send the message as a response
         return message
 
-    @app.route('/submitNote')
-    def submitNote():
-        return("put data here")
+    @app.route('/submitNote', methods=['POST'])
+    def notePrint():
 
+        titleText = request.form["quicknote_title"]
+        contentText = request.form["qncontents"]
+        qnTitle = "Title: " + titleText
+        qnContent = "Content: " + contentText
 
+        # saves the date the note was created
+        createDate = datetime.datetime.now().strftime("%b %d %Y")
+        dateMessage = "QuickNote Created On: " + str(createDate)
+        # Open, Write, Save
+
+        save_path = ".\submitNote"
+        name_of_file = titleText
+        completeName = os.path.join(save_path, name_of_file + ".txt")
+        file1 = open(completeName, "w")
+        toFile = contentText # "Write what you want into the field"
+        file1.write(toFile)
+        file1.close()
+
+        # Unsure if this would work. Directory is referenced, but seems redundant.
+        return (qnTitle + '\n' + qnContent+ dateMessage)
+
+    # Very old iteration of saveFile. Disregard.
+    # def save('/submitNote', 'w'):
+    #    with open('/submitNote', 'w') as f:
+    #        f.write('contentText\n')
     return app
+
