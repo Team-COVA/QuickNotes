@@ -4,6 +4,7 @@ render_template, request)
 import datetime
 import os.path
 
+
 def create_app():
     # create and configure the app
     app = Flask(__name__)
@@ -13,6 +14,8 @@ def create_app():
     @app.route('/')
     def index():
         return render_template("index.html")
+
+
 
     @app.route('/getServerTime')
     def getServerTime():
@@ -25,6 +28,7 @@ def create_app():
 
         #send the message as a response
         return message
+
     @app.route('/submitNote', methods=['POST'])
     def notePrint():
 
@@ -54,3 +58,4 @@ def create_app():
     #    with open('/submitNote', 'w') as f:
     #        f.write('contentText\n')
     return app
+
