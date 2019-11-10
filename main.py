@@ -29,18 +29,9 @@ def create_app():
         #send the message as a response
         return message
 
-    @app.route('/submitNote', methods=['POST'])
-    def notePrint():
-
-        titleText = request.form["quicknote_title"]
-        contentText = request.form["qncontents"]
-        qnTitle = "Title: " + titleText
-        qnContent = "Content: " + contentText
-
-        # saves the date the note was created
-        createDate = datetime.datetime.now().strftime("%b %d %Y")
-        dateMessage = "QuickNote Created On: " + str(createDate)
-        # Open, Write, Save
+    @app.route('/submitNote')
+    def submitNote():
+        return ("put data here")
 
         save_path = ".\submitNote"
         name_of_file = titleText
