@@ -32,7 +32,6 @@ def create_app():
 
     @app.route('/submitNote', methods=['POST'])
     def submitNote():
-        print(str(request))
 
         titleText = request.json["Title"]
         contentText = request.json["Contents"]
@@ -43,7 +42,6 @@ def create_app():
         createDate = datetime.datetime.now().strftime("%b %d %Y")
         dateMessage = "QuickNote Created On: " + str(createDate)
         # Open, Write, Save
-        print(titleText)
 
         save_path = "submitNote"
         save_path = os.path.join(THIS_FILE_PATH, save_path)
