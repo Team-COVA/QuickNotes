@@ -53,14 +53,14 @@ function dataPost(url){
         if (xhr.readyState === 4 && xhr.status === 200);
         }
 
-        xhr.open("GET", url, true);
+        xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         var jsonData = JSON.stringify(data);
         xhr.send(jsonData);
 
 }
 
-dataPost("http://localhost:5000/submitNote");
+dataPost("/submitNote");
 
 
 }
