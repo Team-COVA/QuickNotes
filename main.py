@@ -1,9 +1,9 @@
 from flask import (Flask,
 render_template, request)
-
-import datetime
+import time
 import os.path
-import stat
+import datetime
+import json
 THIS_FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 
 def create_app():
@@ -59,6 +59,31 @@ def create_app():
 
         # Unsure if this would work. Directory is referenced, but seems redundant.
         return (qnTitle + '\n' + qnContent+ dateMessage)
+
+    @app.route('/file_read', methods=['GET'])
+    def dataPull():
+        data = {'Title': 'a', 'Contents': 'b', 'Creation_Date': 'c', 'Last_Modified': 'd'}
+        basepath = os.path.realpath('./submitNote')
+        dataArray = []
+        for file in os.listdir(basepath):
+            filetitle = str(file)
+            filepath = os.path.join(basepath, file)
+            creatstamp= os.path.getctime(filepath)
+            timestamp = os.path.getmtime(filepath)
+            data.update(Last_Modified=time.ctime(timestamp))
+            data.update(Creation_Date=time.ctime(creatstamp))
+            data.update(Title=filetitle)
+            with open(filepath, 'r') as f:
+                mainbody = (f.read())
+            data.update(Contents=mainbody)
+            dataArray.append(data.copy())
+        jsonArray = json.dumps(dataArray)
+        return jsonArray
+    
+
+
+
+
 
     return app
 
