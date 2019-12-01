@@ -4,7 +4,32 @@ render_template, request)
 import datetime
 import os.path
 import stat
+import time
+import json
+
 THIS_FILE_PATH = os.path.dirname(os.path.realpath(__file__))
+
+saveData = [{
+  "Title": "Justo.txt",
+  "Content": "Bang Ban",
+  "Date created": "9/4/2019"
+}, {
+  "Title": "SemSed.txt",
+  "Content": "Czerwonak",
+  "Date created": "10/6/2019"
+}, {
+  "Title": "Posuere.txt",
+  "Content": "Yong’an",
+  "Date created": "10/22/2019"
+}, {
+  "Title": "Etiam.txt",
+  "Content": "Duisburg",
+  "Date created": "6/3/2019"
+}, {
+  "Title": "CumSociisNatoque.txt",
+  "Content": "Lujiao",
+  "Date created": "8/7/2019"
+}]
 
 def create_app():
     # create and configure the app
@@ -60,5 +85,26 @@ def create_app():
         # Unsure if this would work. Directory is referenced, but seems redundant.
         return (qnTitle + '\n' + qnContent+ dateMessage)
 
-    return app
+    @app.route('/fileread', methods=['GET'])
+    def dataPull():
+        data = {'Title': 'a', 'Contents': 'b', 'Creation_Date': 'c', 'Last_Modified': 'd'}
+        basepath = os.path.realpath('./submitNote')
+        dataArray = []
+        for file in os.listdir(basepath):
+            filetitle = str(file)
+            filepath = os.path.join(basepath, file)
+            creatstamp = os.path.getctime(filepath)
+            timestamp = os.path.getmtime(filepath)
+            data.update(Last_Modified=time.ctime(timestamp))
+            data.update(Creation_Date=time.ctime(creatstamp))
+            data.update(Title=filetitle)
+            with open(filepath, 'r') as f:
+                mainbody = (f.read())
+            data.update(Contents=mainbody)
+            dataArray.append(data.copy())
 
+        jsonArray = json.dumps(dataArray)
+
+        return jsonArray
+
+    return app
