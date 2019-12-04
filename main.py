@@ -9,28 +9,6 @@ import json
 
 THIS_FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 
-saveData = [{
-  "Title": "Justo.txt",
-  "Content": "Bang Ban",
-  "Date created": "9/4/2019"
-}, {
-  "Title": "SemSed.txt",
-  "Content": "Czerwonak",
-  "Date created": "10/6/2019"
-}, {
-  "Title": "Posuere.txt",
-  "Content": "Yong’an",
-  "Date created": "10/22/2019"
-}, {
-  "Title": "Etiam.txt",
-  "Content": "Duisburg",
-  "Date created": "6/3/2019"
-}, {
-  "Title": "CumSociisNatoque.txt",
-  "Content": "Lujiao",
-  "Date created": "8/7/2019"
-}]
-
 def create_app():
     # create and configure the app
     app = Flask(__name__)
