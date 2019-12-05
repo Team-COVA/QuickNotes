@@ -110,13 +110,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-
-
-//-----FOR TESTING PURPOSES ONLY--------------------------
-//test.onclick = function (){
- //httpGetAsync('/file_read', XMLHttpRequest.responseText)
-//}
-//--------------------------------------------------------
-//submit request to server for the time when the page loads
 httpGetAsync("/getServerTime", requestCallback);
 
