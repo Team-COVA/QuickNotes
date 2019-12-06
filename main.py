@@ -79,5 +79,9 @@ def create_app():
             dataArray.append(data.copy())
         jsonArray = json.dumps(dataArray)
         return jsonArray
+<<<<<<< Updated upstream
     return app
 
+=======
+    return app
+>>>>>>> Stashed changes
