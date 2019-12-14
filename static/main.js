@@ -30,47 +30,85 @@ function requestCallback(responseText)
 var submit = document.getElementById("submit");
 var clear = document.getElementById("clear");
 var submitDate = new Date();
+//var test = document.getElementById("test");
+var Test = document.getElementById("Test");
 
 
 submit.onclick = function buttonAction(){
 
     var title = document.getElementById("title").value;
     var content = document.getElementById("contents").value;
-    var data = {
+    var payLoad = {
         'Title': title,
         'Contents': content,
         'Submit Date': submitDate
         }
 
-    console.log(data);
+    dataPost("/submitNote", payLoad);
 
-function dataPost(url){
+}
+
+function dataPost(url, data, callback){
     var xhr = new XMLHttpRequest();
-    var url = '/submitNote';
-
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200);
+        if (xhr.readyState === 4 && xhr.status === 200)
+        {
+            console.log("POST completed");
+            if (callback) callback(xhr.responseText);
         }
+    }
 
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        var jsonData = JSON.stringify(data);
-        xhr.send(jsonData);
-
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    var jsonData;
+    if(data != null) jsonData = JSON.stringify(data);
+    xhr.send(jsonData);
 }
+//Test.onclick = function(){
+//
+//    httpGetAsync("/getFileLists", function(response){
+//        console.log(response);
+//    });
+//
+//
+//}
 
-dataPost("/submitNote");
 
-
-}
 clear.onclick = function(){
     document.getElementById("title").value = ""
     document.getElementById("contents").value = ""
+    console.log("cleared");
+
 }
+document.addEventListener("DOMContentLoaded", function(event) {
+     httpGetAsync("/getFileLists", function(response){
+        var dataArray = eval(response);
+        var dataLen = dataArray.length;
+        //console.log(dataArray[0]);
+        for (var i = 0; i < dataLen; i++){
+            console.log(dataArray[i].Title)
+//        prints list of values in array for the length of the array in the console
+
+//            document.getElementById("getTitle").innerHTML = dataArray[i].Title;
+ var htmlHeader = "<li>Title</li>";
+            htmlHeader = htmlHeader.replace("Title", "Title: " + dataArray[i].Title);
+        // Creating variable to replace
+
+//        var htmlBody = "<li>Content</li>";
+//            htmlBody.replace("Content", "Contents: " + dataArray.Content);
+
+//        var htmlDate = "<p>Date created</p>";
+//            htmlDate.replace("Date created", "Date: " + dataArray.dateCreated);
+
+        document.getElementById("getTitle").innerHTML = htmlHeader;
+        }
+
+    })
+
+ });
 
 
 
-//submit request to server for the time when the page loads
-httpGetAsync("http://localhost:5000/getServerTime", requestCallback);
+httpGetAsync("/getServerTime", requestCallback);
 
