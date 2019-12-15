@@ -80,4 +80,3 @@ def create_app():
         jsonArray = json.dumps(dataArray)
         return jsonArray
     return app
-
