@@ -29,9 +29,8 @@ function requestCallback(responseText)
 
 var submit = document.getElementById("submit");
 var clear = document.getElementById("clear");
-var submitDate = new Date();
-//var test = document.getElementById("test");
 var Test = document.getElementById("Test");
+var submitDate = new Date();
 
 
 submit.onclick = function buttonAction(){
@@ -65,50 +64,52 @@ function dataPost(url, data, callback){
     if(data != null) jsonData = JSON.stringify(data);
     xhr.send(jsonData);
 }
-//Test.onclick = function(){
-//
-//    httpGetAsync("/getFileLists", function(response){
-//        console.log(response);
-//    });
-//
-//
-//}
 
 
 clear.onclick = function(){
     document.getElementById("title").value = ""
     document.getElementById("contents").value = ""
     console.log("cleared");
-
 }
+
+
 document.addEventListener("DOMContentLoaded", function(event) {
-     httpGetAsync("/getFileLists", function(response){
+
+    httpGetAsync("/fileread", function(response){
+
         var dataArray = eval(response);
         var dataLen = dataArray.length;
-        //console.log(dataArray[0]);
+
         for (var i = 0; i < dataLen; i++){
-            console.log(dataArray[i].Title)
-//        prints list of values in array for the length of the array in the console
 
-//            document.getElementById("getTitle").innerHTML = dataArray[i].Title;
- var htmlHeader = "<li>Title</li>";
-            htmlHeader = htmlHeader.replace("Title", "Title: " + dataArray[i].Title);
-        // Creating variable to replace
+            var noteList = document.getElementById("noteList");
+            var listItem = document.createElement('li');
+            var htmlBody = document.createElement('p');
+            var htmlDate = document.createElement('p');
+            var htmlHeader = document.createElement('p');
+            var htmlLastMod = document.createElement('p');
+            //Create variables to house the 'create element' tags we will be using to store looping
+            //variables we need.
 
-//        var htmlBody = "<li>Content</li>";
-//            htmlBody.replace("Content", "Contents: " + dataArray.Content);
+            htmlHeader.innerHTML = "Title: " + dataArray[i].Title;
+            htmlBody.innerHTML = "Contents: " + dataArray[i].Contents;
+            htmlDate.innerHTML = "Date Created: " + dataArray[i]["Creation_Date"];
+            htmlLastMod.innerHTML = "Last Modified: " + dataArray[i]["Last_Modified"];
+            //Set the html property of the variable 'object' (in this case the string) to looping
+            //variable [i] with a string attached to it.
 
-//        var htmlDate = "<p>Date created</p>";
-//            htmlDate.replace("Date created", "Date: " + dataArray.dateCreated);
-
-        document.getElementById("getTitle").innerHTML = htmlHeader;
+            listItem.appendChild(htmlHeader);
+            listItem.appendChild(htmlBody);
+            listItem.appendChild(htmlDate);
+            listItem.appendChild(htmlLastMod);
+            // Adds variables (htmlHeader, etc) to the list item 'listItem'
+            noteList.appendChild(listItem);
+            // Tethers all variables (now in listItem) to the unordered list tag id 'noteList' in the index.html
+            //Coded by Damarea Timmons (11/16 - 11/30)
         }
-
-    })
+    });
 
  });
 
-
-
+//submit request to server for the time when the page loads
 httpGetAsync("/getServerTime", requestCallback);
-
