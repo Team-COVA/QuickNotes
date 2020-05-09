@@ -65,6 +65,7 @@ def create_app():
         data = {'Title': 'a', 'Contents': 'b', 'Creation_Date': 'c', 'Last_Modified': 'd'}
         basepath = os.path.realpath('./submitNote')
         dataArray = []
+
         for file in os.listdir(basepath):
             filetitle = str(file)
             filepath = os.path.join(basepath, file)
@@ -77,6 +78,7 @@ def create_app():
                 mainbody = (f.read())
             data.update(Contents=mainbody)
             dataArray.append(data.copy())
+
         jsonArray = json.dumps(dataArray)
         return jsonArray
     return app

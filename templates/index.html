@@ -9,7 +9,7 @@
 </head>
 <body>
   <h1>QuickNotes</h1>
-
+    <div id="template">
       <fieldset>
       <div>
           <label for="title">Title:</label><br>
@@ -26,8 +26,36 @@
       <button id="submit">Save</button> <button id="clear">Delete</button>
 
        </fieldset>
+     </div>
+    <!-- The Modal -->
+<div id="newPopup" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+      <h4 class="modal-title" id="myModalLabel">QuickNote Modification</h4>
+    <fieldset>
+      <div>
+          <label for="titleMod">Title:</label><br>
+          <input type="text" id="titleMod" name="qntitleMod" value=>
+
+
+      </div>
+      <div>
+        <label for="contentsMod">Contents:</label><br>
+        <textarea rows="15" cols="58" name="qncontentsMod"
+                            id="contentsMod"></textarea>
+      </div>
+
+      <button id="submitMod">Save</button> <button id="clearMod">Delete</button>
+
+       </fieldset>
+  </div>
+
+</div>
 
     <ul id="noteList"></ul>
+
+
   <!-- Unordered List used for loading user listing notes into the interface -->
   <p id="servertime"></p>
 
